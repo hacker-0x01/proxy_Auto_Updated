@@ -1,0 +1,75 @@
+[SETTINGS]
+{
+  "Name": "pROxY",
+  "SuggestedBots": 1,
+  "MaxCPM": 0,
+  "LastModified": "2022-10-13T00:38:13.4063765+01:00",
+  "AdditionalInfo": "Valid pROxY Grabber | HTTp | SOCKS4 | SOCKS5 | Free version !^! @GreyH4tHackers",
+  "RequiredPlugins": [],
+  "Author": "l4gtr4",
+  "Version": "1.2.2",
+  "SaveEmptyCaptures": false,
+  "ContinueOnCustom": false,
+  "SaveHitsToTextFile": false,
+  "IgnoreResponseErrors": true,
+  "MaxRedirects": 8,
+  "NeedsProxies": false,
+  "OnlySocks": false,
+  "OnlySsl": false,
+  "MaxProxyUses": 0,
+  "BanProxyAfterGoodStatus": false,
+  "BanLoopEvasionOverride": -1,
+  "EncodeData": false,
+  "AllowedWordlist1": "",
+  "AllowedWordlist2": "",
+  "DataRules": [],
+  "CustomInputs": [],
+  "ForceHeadless": false,
+  "AlwaysOpen": false,
+  "AlwaysQuit": false,
+  "QuitOnBanRetry": false,
+  "DisableNotifications": false,
+  "CustomUserAgent": "",
+  "RandomUA": false,
+  "CustomCMDArgs": ""
+}
+
+[SCRIPT]
+BEGIN SCRIPT IronPython
+BANNER = ('''
+  ______ _______ _______ ______ _______ _______ ______  
+ / _____|_______|_______|_____ (_______|_______|______) 
+( (____     _    _______ _____) )  _    _____   _     _ 
+ \____ \   | |  |  ___  |  __  /  | |  |  ___) | |   | |
+ _____) )  | |  | |   | | |  \ \  | |  | |_____| |__/ / 
+(______/   |_|  |_|   |_|_|   |_| |_|  |_______)_____/ 
+     ''')
+END SCRIPT -> VARS "BANNER"
+
+REQUEST GET "http://raw.githubusercontent.com/hookzof/socks5_list/master/proxy.txt" 
+  
+  HEADER "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36" 
+  HEADER "Pragma: no-cache" 
+  HEADER "Accept: */*" 
+
+KEYCHECK 
+  KEYCHAIN Failure OR 
+    KEY "<RESPONSECODE>" DoesNotContain "200" 
+  KEYCHAIN Success OR 
+    KEY "<RESPONSECODE>" Contains "200" 
+
+PARSE "<SOURCE>" LR "" "" -> VAR "src" 
+
+UTILITY File "socks5.txt" AppendLines "<src>" 
+
+BEGIN SCRIPT IronPython
+BANNER2 = ('''
+ ______  _______ _______ _______ 
+(______)(_______|_______|_______)
+ _     _ _     _ _     _ _____   
+| |   | | |   | | |   | |  ___)  
+| |__/ /| |___| | |   | | |_____ 
+|_____/  \_____/|_|   |_|_______)
+     ''')
+END SCRIPT -> VARS "BANNER2"
+
