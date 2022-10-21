@@ -21,6 +21,10 @@ Config Details
 
 ✅Support: yes
 
+🛒Config: https://greyhathackers.sellpass.io/products/premium-and-free-proxies-grabber
+
+🎁$1 Coupon: 91jf6f2xh0w
+
 Whats New?
 
     input for grabbing premium or free
